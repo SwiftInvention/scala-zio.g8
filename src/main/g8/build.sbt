@@ -33,5 +33,9 @@ lazy val settings = Seq(
     "-Ywarn-value-discard",           // Warn when non-Unit expression results are unused.
     "-Werror"                         // Fail the compilation if there are any warnings.
   ),
+  // scalafix
+  semanticdbEnabled := true, // enable SemanticDB
+  semanticdbVersion := scalafixSemanticdb.revision, // only required for Scala 2.x
+
   testFrameworks += new TestFramework("zio.test.sbt.ZTestFramework")
 )
