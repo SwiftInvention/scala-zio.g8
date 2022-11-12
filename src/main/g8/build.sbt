@@ -20,10 +20,12 @@ lazy val settings = Seq(
     "-explaintypes",          // Explain type errors in more detail.
     "-feature",               // Emit warning and location for usages of features that should be imported explicitly.
     "-language:higherKinds",  // Allow higher-kinded types
+    "-language:postfixOps",   // Allow postfix operator notation, such as 1 to 10 toList
     "-language:implicitConversions",  // Allow definition of implicit functions called views
     "-unchecked",                     // Enable additional warnings where generated code depends on assumptions.
     "-Xlint:infer-any",               // Warn when a type argument is inferred to be `Any`.
     "-Xlint:missing-interpolator",    // A string literal appears to be missing an interpolator id.
+    "-Ywarn-dead-code",               // Warn when dead code is identified.
     "-Ywarn-unused:implicits",        // Warn if an implicit parameter is unused.
     "-Ywarn-unused:imports",          // Warn if an import selector is not referenced.
     "-Ywarn-unused:locals",           // Warn if a local definition is unused.
