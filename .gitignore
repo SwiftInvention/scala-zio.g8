@@ -2,6 +2,7 @@
 .bloop/
 .bsp/
 .idea/
+.vscode/
 .metals/
 boot/
 lib_managed/
