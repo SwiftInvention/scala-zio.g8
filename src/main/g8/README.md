@@ -1,16 +1,29 @@
 # $name;format="Camel"$ project
 
-Build `sbt clean compile`
+## Usage
 
-### How to use scalafmt in:  
-+ [VS Code][vscode]
-+ [Intellij IDEA][intellij]
+- Compile
 
+  ```sh
+  sbt compile
+  ```
+
+- Run
+
+  ```sh
+  sbt $name;format="camel"$/run
+  ```
+
+### How to use scalafmt
+
+- With [VS Code][vscode]
+- With [Intellij IDEA][intellij]
 
 [vscode]: https://scalameta.org/metals/docs/editors/vscode/
 [intellij]: https://scalameta.org/scalafmt/docs/installation.html#intellij
 
-### How to use scalafix in: 
-+ ```sbt scalafix ``` – to execute linter
-+ ```scalafix RemoveUnused``` – to delete unused variables
-+ ```scalafixAll <args>``` – invoke scalafix across all configurations where scalafix is enabled
+### How to use scalafix
+
+- `sbt scalafix` – to execute linter
+- `scalafix RemoveUnused` – to delete unused variables
+- `scalafixAll <args>` – invoke scalafix across all configurations where scalafix is enabled
