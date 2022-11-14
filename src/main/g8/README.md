@@ -1,11 +1,22 @@
 # $name;format="Camel"$ project
 
+## Prerequisites
+
+- `sbt`
+- Docker, `docker-compose`
+
 ## Usage
 
-- Compile
+- Start docker containers
+
+  Note: flags and options mean:
+
+  - use detached mode
+  - wait for all containers to be healthy
+  - remove volumes on exit
 
   ```sh
-  sbt compile
+  docker-compose up -Vd --wait
   ```
 
 - Run
@@ -13,6 +24,25 @@
   ```sh
   sbt $name;format="camel"$/run
   ```
+
+- When done, remove docker containers, networks and volumes
+
+  ```sh
+  docker-compose down -v
+  ```
+
+- Clean build artifacts and recompile (just in case)
+
+  ```sh
+  sbt clean compile
+  ```
+
+- Check for dependency updates (just in case)
+
+  - Uncomment `sbt-dependency-updates` in [`project/plugins.sbt`](project/plugins.sbt)
+  - ```sh
+    sbt dependencyUpdates
+    ```
 
 ### How to use scalafmt
 
