@@ -25,6 +25,12 @@
   sbt $name;format="camel"$/run
   ```
 
+- When done, remove docker containers, networks and volumes
+
+  ```sh
+  docker-compose down -v
+  ```
+
 - Clean build artifacts and recompile (just in case)
 
   ```sh
