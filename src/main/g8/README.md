@@ -25,6 +25,12 @@
   sbt $name;format="camel"$/run
   ```
 
+- Clean build artifacts and recompile (just in case)
+
+  ```sh
+  sbt clean compile
+  ```
+
 ### How to use scalafmt
 
 - With [VS Code][vscode]
