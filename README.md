@@ -2,7 +2,14 @@
 
 A [Giter8][g8] template for some sbt projects
 
-## Including dependencies:
+## Setting up the project
+
+```sh
+sbt new SwiftInvention/scala-zio.g8 -b main
+# then follow interactive process to choose project name and other parameters
+```
+
+## Includes dependencies
 
 - sbt
 - zio 1
@@ -14,7 +21,7 @@ A [Giter8][g8] template for some sbt projects
 - zio-test
 - testcontainers
 
-## Structure of project:
+## Structure of project
 
 ```
 $name$ of project
@@ -35,13 +42,6 @@ project
 ├── build.properties
 build.sbt
 
-```
-
-## Setting up the project:
-
-```sh
-sbt new SwiftInvention/scala-zio.g8 -b main
-# then follow interactive process to choose project name and other parameters
 ```
 
 [g8]: http://www.foundweekends.org/giter8/
