@@ -37,6 +37,13 @@
   sbt clean compile
   ```
 
+- Check for dependency updates (just in case)
+
+  - Uncomment `sbt-dependency-updates` in [`project/plugins.sbt`](project/plugins.sbt)
+  - ```sh
+    sbt dependencyUpdates
+    ```
+
 ### How to use scalafmt
 
 - With [VS Code][vscode]

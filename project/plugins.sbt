@@ -3,4 +3,3 @@ libraryDependencies += { "org.scala-sbt" %% "scripted-plugin" % sbtVersion.value
 
 // Note: an optional plugin for listing outdated dependencies
 // addSbtPlugin("org.jmotor.sbt" % "sbt-dependency-updates" % "1.2.7")
-// Usage: sbt dependencyUpdates
