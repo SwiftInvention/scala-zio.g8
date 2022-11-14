@@ -2,7 +2,7 @@ version: "3.8"
 
 networks:
   localNetwork:
-   name: $name$-local
+   name: $name;format="normalize"$-local
 
 services:
   mysql:
