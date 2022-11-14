@@ -1,30 +1,31 @@
-
-## Template for projects
+# Template for projects
 
 A [Giter8][g8] template for some sbt projects
 
-### Including dependencies:
-* sbt
-* zio 1
-* quill
-* mysql jdbc
-* tapir
-* circe
-* zio-http
-* zio-test
-* testcontainers  
+## Including dependencies:
 
-### Structure of project:  
+- sbt
+- zio 1
+- quill
+- mysql jdbc
+- tapir
+- circe
+- zio-http
+- zio-test
+- testcontainers
+
+## Structure of project:
+
 ```
 $name$ of project
-├── src  
-│   └── main  
+├── src
+│   └── main
 │   │    └── resources
 │   │    │   └── db
 │   │    │       └── migration
-│   │    └── scala  
+│   │    └── scala
 │   │        └── $organization$
-│   └── test 
+│   └── test
 │        └── resources
 │        └── scala
 │            └── $organization$
@@ -36,11 +37,11 @@ build.sbt
 
 ```
 
-### Setting up the project:  
-```
+## Setting up the project:
+
+```sh
 sbt new SwiftInvention/scala-zio.g8
 # then follow interactive process to choose project name and other parameters
-```  
-
+```
 
 [g8]: http://www.foundweekends.org/giter8/
