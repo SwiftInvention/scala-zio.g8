@@ -4,7 +4,7 @@ ThisBuild / organization := "$organization$"
 ThisBuild / scalaVersion := "$scala_version$"
 ThisBuild / version := "0.0.1-SNAPSHOT"
 
-lazy val root = (project in file("""$name;format="normalize"$"""))
+lazy val $name;format="camel"$ = (project in file("""$name;format="normalize"$"""))
   .settings(
     settings
       ++ Seq(
