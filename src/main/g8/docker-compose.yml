@@ -2,7 +2,7 @@ version: "3.8"
 
 networks:
   localNetwork:
-   name: project-name-local
+   name: $name$-local
 
 services:
   mysql:
