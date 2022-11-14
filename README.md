@@ -40,7 +40,7 @@ build.sbt
 ## Setting up the project:
 
 ```sh
-sbt new SwiftInvention/scala-zio.g8
+sbt new SwiftInvention/scala-zio.g8 -b main
 # then follow interactive process to choose project name and other parameters
 ```
 
