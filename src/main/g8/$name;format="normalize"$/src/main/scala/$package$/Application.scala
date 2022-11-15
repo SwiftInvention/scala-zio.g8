@@ -14,7 +14,7 @@ object Application {
     println("-" * 50)
 
     val q = quote {
-      query[Person].filter(_.name == "Martin Odersky")
+      query[Person].filter(_.name equals "Martin Odersky")
     }
     val result = run(q)
     println(result)
