@@ -26,7 +26,7 @@ object Migration {
     tryMigrate match {
       case Success(_) => log.info("Migrating the database finished successful")
       case Failure(e) =>
-        log.warning(s"Migrating the database failed: $e")
+        log.warning("Migrating the database failed: " + e)
         throw RuntimeException("Migrating the database failed")
     }
   }
