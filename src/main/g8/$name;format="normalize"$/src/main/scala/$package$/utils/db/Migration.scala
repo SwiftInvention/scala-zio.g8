@@ -1,14 +1,12 @@
 package $package$.utils.db
 
+import $package$.utils.log.Logable
 import io.getquill.{MysqlJdbcContext, SnakeCase}
 import org.flywaydb.core.Flyway
-
-import java.util.logging.Logger
 import scala.util.{Failure, Success, Try}
 
 object Migration {
 
-  private val log = Logger.getLogger("migration")
   val ctx = new MysqlJdbcContext(SnakeCase, "ctx")
 
   private val flyway = Flyway.configure
@@ -26,7 +24,7 @@ object Migration {
     tryMigrate match {
       case Success(_) => log.info("Migrating the database finished successful")
       case Failure(e) =>
-        log.warning("Migrating the database failed: " + e)
+        log.warn("Migrating the database failed: " + e)
         throw new RuntimeException("Migrating the database failed")
     }
   }
