@@ -5,7 +5,7 @@ import io.getquill.{MysqlJdbcContext, SnakeCase}
 import org.flywaydb.core.Flyway
 import scala.util.{Failure, Success, Try}
 
-object Migration {
+object Migration extends Logable {
 
   val ctx = new MysqlJdbcContext(SnakeCase, "ctx")
 

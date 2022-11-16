@@ -4,7 +4,7 @@ import $package$.utils.db.Migration.ctx._
 import $package$.utils.db.Migration
 import $package$.utils.log.Logable
 import $package$.db.model.Person
-object Application {
+object Application extends Logable {
 
   def main(args: Array[String]): Unit = {
     println("-" * 50)
