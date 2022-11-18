@@ -7,9 +7,13 @@ import zio.{Task, ZIO}
 trait PersonRepository {
   import ctx._
 
+  val persons = quote {
+    querySchema[Person]("person", _.name -> "name", _.birthDate -> "birth_date")
+  }
+
   def getAllPersons: Task[List[Person]] = ZIO.attempt {
     val q = ctx.quote {
-      ctx.query[Person]
+      persons
     }
     ctx.run(q)
   }
