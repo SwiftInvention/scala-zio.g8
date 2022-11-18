@@ -23,26 +23,21 @@ object PersonEndpoint {
     Person("Person5", Instant.now)
   )
 
-  case class User(name: String) extends AnyVal
-
-  val helloEndpoint: PublicEndpoint[User, Unit, String, Any] = endpoint.get
-    .in("hello")
-    .in(query[User]("name"))
-    .out(stringBody)
-  val helloServerEndpoint: ZServerEndpoint[Any, Any] =
-    helloEndpoint.serverLogicSuccess(user => ZIO.succeed(s"Hello \${user.name}"))
-
-  val booksListing: PublicEndpoint[Unit, Unit, List[Person], Any] = endpoint.get
+  val personListing: PublicEndpoint[Unit, Unit, List[Person], Any] = endpoint
+    .name("Default-endpoint")
+    .description("Get all persons from database")
+    .get
     .in("person" / "list" / "all")
     .out(jsonBody[List[Person]])
-  val booksListingServerEndpoint: ZServerEndpoint[Any, Any] =
-    booksListing.serverLogicSuccess(_ => ZIO.succeed(personList))
+
+  val personListingServerEndpoint: ZServerEndpoint[Any, Any] =
+    personListing.serverLogicSuccess(_ => ZIO.succeed(personList))
 
   val apiEndpoints: List[ZServerEndpoint[Any, Any]] =
-    List(helloServerEndpoint, booksListingServerEndpoint)
+    List(personListingServerEndpoint)
 
   val docEndpoints: List[ZServerEndpoint[Any, Any]] = SwaggerInterpreter()
-    .fromServerEndpoints[Task](apiEndpoints, "Swift Invention template", "1.0.0")
+    .fromServerEndpoints[Task](apiEndpoints, "$name$", "1.0.0")
 
   val prometheusMetrics: PrometheusMetrics[Task] = PrometheusMetrics.default[Task]()
   val metricsEndpoint: ZServerEndpoint[Any, Any] = prometheusMetrics.metricsEndpoint

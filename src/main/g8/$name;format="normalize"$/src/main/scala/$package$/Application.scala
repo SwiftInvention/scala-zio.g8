@@ -1,5 +1,6 @@
 package $package$
-import com.swiftinvention.http.PersonEndpoint
+
+import $package$.http._
 
 import org.slf4j.LoggerFactory
 import sttp.tapir.server.interceptor.log.DefaultServerLog
@@ -8,7 +9,6 @@ import zhttp.http.HttpApp
 import zhttp.service.server.ServerChannelFactory
 import zhttp.service.{EventLoopGroup, Server}
 import zio.{Console, Scope, Task, ZIO, ZIOAppArgs, ZIOAppDefault}
-
 
 object Application extends ZIOAppDefault {
 
@@ -30,19 +30,20 @@ object Application extends ZIOAppDefault {
         )
         .metricsInterceptor(PersonEndpoint.prometheusMetrics.metricsInterceptor())
         .options
+
     val app: HttpApp[Any, Throwable] =
       ZioHttpInterpreter(serverOptions).toHttp(PersonEndpoint.all)
 
-    val port = sys.env.get("http.port").map(_.toInt).getOrElse(8080)
-
     (for {
+      conf <- ZIO.service[HttpServerConfig]
+      port = conf.port
       serverStart <- Server(app).withPort(port).make
       _ <- Console.printLine(
-        s"Go to http://localhost:\${serverStart.port}/docs to open SwaggerUI. Press ENTER key to exit."
+        s"Go to http://localhost:\${port}/docs to open SwaggerUI. Press ENTER key to exit."
       )
       _ <- Console.readLine
     } yield serverStart)
-      .provideSomeLayer(EventLoopGroup.auto(0) ++ ServerChannelFactory.auto ++ Scope.default)
+      .provideSomeLayer(HttpServerConfig.layer ++ EventLoopGroup.auto(0) ++ ServerChannelFactory.auto ++ Scope.default)
       .exitCode
   }
 }

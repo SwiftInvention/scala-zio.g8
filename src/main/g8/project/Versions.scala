@@ -29,13 +29,14 @@ object Versions {
   val scalaUri      = "4.0.2"
   val slf4j         = "1.7.36"
   val sttp          = "3.6.2"
-  val tapir = "1.2.1"
+  val tapir         = "1.2.1"
   val testContainers      = "1.17.2"
   val testcontainersScala = "0.40.11"
   val zio                 = "1.0.16" // Note: Updating to 2.x may break compatibility with internal libs
+  val zioConfig                 = "3.0.1"
   val zioInteropReactivestreams = "1.3.12"
   val zioKafka                  = "0.17.5"
   val zioMagic                  = "0.3.12"
   val ziosqs                    = "0.4.2"
-  val zioHttpVersion = "2.0.0-RC10" // Note: Seems everything works with this version
+  val zioHttpVersion            = "2.0.0-RC10" // Note: Seems everything works with this version
 }
