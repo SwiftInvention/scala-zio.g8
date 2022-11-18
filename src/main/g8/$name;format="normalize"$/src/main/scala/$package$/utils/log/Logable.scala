@@ -8,6 +8,6 @@ trait Logable {
 }
 
 class Logger {
-  def info(msg: String): Unit = println("[INFO] " + msg)
-  def warn(msg: String): Unit = println("[WARN] " + msg)
+  def info(msg: String): Task[Unit] = ZIO.attempt(println("[INFO] " + msg))
+  def warn(msg: String): Task[Unit] = ZIO.attempt(println("[WARN] " + msg))
 }
