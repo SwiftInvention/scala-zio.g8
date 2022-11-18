@@ -18,9 +18,6 @@ object Migration extends Logable {
     _ <- log.info("Start migrating the database")
     res <- ZIO
       .attempt(flyway.migrate())
-      .foldZIO(
-        e => ZIO.fail(e),
-        a => log.info("Migration the database finished successfully") *> ZIO.succeed(a)
-      )
+      .flatMap(a => log.info("Migration the database finished successfully") *> ZIO.succeed(a))
   } yield res
 }
