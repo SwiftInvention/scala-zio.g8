@@ -1,5 +1,6 @@
 package $package$.utils.log
 
+import zio.{Task, ZIO}
 /** This trait is just stub for logging, and it is expected that some kind of logging implementation
  * will be used in the project
  */
