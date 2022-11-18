@@ -16,8 +16,7 @@ object Migration extends Logable {
 
   def migrate: ZIO[Any, Throwable, MigrateResult] = for {
     _ <- log.info("Start migrating the database")
-    res <- ZIO
-      .attempt(flyway.migrate())
-      .flatMap(a => log.info("Migration the database finished successfully") *> ZIO.succeed(a))
+    res <- ZIO.attempt(flyway.migrate())
+    _ <- log.info("Migration the database finished successfully")
   } yield res
 }
