@@ -8,6 +8,6 @@ case object DbContext {
 
   import ctx._
   val persons = quote {
-    querySchema[Person]("person", _.name -> "name", _.birthDate -> "birth_date")
+    querySchema[Person]("person")
   }
 }
