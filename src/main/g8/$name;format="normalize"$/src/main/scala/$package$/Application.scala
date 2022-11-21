@@ -1,5 +1,6 @@
 package $package$
 
+import $package$.config.HttpServerConfig
 import $package$.http._
 import $package$.db.repository.PersonRepository
 import $package$.utils.db.Migration
