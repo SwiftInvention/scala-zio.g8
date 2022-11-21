@@ -4,14 +4,8 @@ object Dependencies {
 
   lazy val commonDep = Seq(
     "dev.zio" %% "zio" % Versions.zio,
-    "dev.zio" %% "zio-macros" % Versions.zio,
-    "com.beachape" %% "enumeratum-quill" % Versions.enumeratum,
     "com.softwaremill.sttp.tapir" %% "tapir-enumeratum" % Versions.tapir,
     "com.softwaremill.sttp.tapir" %% "tapir-prometheus-metrics" % Versions.tapir,
-    "io.lemonlabs" %% "scala-uri" % Versions.scalaUri,
-    "io.scalaland" %% "chimney" % Versions.chimney,
-    "org.mnode.ical4j" % "ical4j" % Versions.ical,
-    "io.github.kitlangton" %% "zio-magic" % Versions.zioMagic,
     "dev.zio" %% "zio-config" % Versions.zioConfig,
     "dev.zio" %% "zio-config-typesafe" % Versions.zioConfig,
     "dev.zio" %% "zio-config-magnolia" % Versions.zioConfig
@@ -24,7 +18,6 @@ object Dependencies {
   lazy val dbDep = Seq(
     "io.getquill" %% "quill-jdbc" % Versions.quill,
     "mysql" % "mysql-connector-java" % Versions.mysql,
-    "org.mindrot" % "jbcrypt" % "0.4",
     "org.flywaydb" % "flyway-core" % Versions.flyway,
     "org.flywaydb" % "flyway-mysql" % Versions.flyway
   ) map (_ % Compile)
@@ -43,10 +36,5 @@ object Dependencies {
   lazy val testDep = Seq(
     "dev.zio" %% "zio-test" % Versions.zio,
     "dev.zio" %% "zio-test-sbt" % Versions.zio,
-    "com.softwaremill.sttp.tapir" %% "tapir-sttp-stub-server" % Versions.tapir,
-    "com.softwaremill.sttp.client3" %% "circe" % Versions.circe,
-    "com.dimafeng" %% "testcontainers-scala" % Versions.testcontainersScala,
-    "com.dimafeng" %% "testcontainers-scala-mysql" % Versions.testcontainersScala,
-    "org.flywaydb" % "flyway-mysql" % Versions.flyway
   ) map (_ % Test)
 }

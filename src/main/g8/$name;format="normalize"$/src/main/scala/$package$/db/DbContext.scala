@@ -4,7 +4,7 @@ import $package$.db.model.Person
 import io.getquill.{MysqlJdbcContext, SnakeCase}
 
 case object DbContext {
-  lazy val ctx = new MysqlJdbcContext(SnakeCase, "ctx")
+  lazy val ctx = new MysqlJdbcContext(SnakeCase, "mysql")
 
   import ctx._
   val persons = quote {
