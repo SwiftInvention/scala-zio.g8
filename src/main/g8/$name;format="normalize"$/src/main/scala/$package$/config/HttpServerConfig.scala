@@ -1,4 +1,4 @@
-package $package$
+package $package$.config
 
 import zio._
 import zio.config._
@@ -13,7 +13,7 @@ object HttpServerConfig {
       read {
         descriptor[HttpServerConfig].from(
           TypesafeConfigSource.fromResourcePath
-            .at(PropertyTreePath.\$("HttpServerConfig"))
+            .at(PropertyTreePath.\$("HttpServer"))
         )
       }
     }
