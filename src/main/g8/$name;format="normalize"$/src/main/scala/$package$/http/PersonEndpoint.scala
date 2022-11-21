@@ -1,7 +1,7 @@
 package $package$.http
 
 import $package$.db.model._
-
+import $package$.db.repository.PersonRepository
 import sttp.tapir._
 import io.circe.generic.auto._
 import sttp.tapir.generic.auto._
@@ -9,19 +9,9 @@ import sttp.tapir.json.circe._
 import sttp.tapir.server.metrics.prometheus.PrometheusMetrics
 import sttp.tapir.swagger.bundle.SwaggerInterpreter
 import sttp.tapir.ztapir.ZServerEndpoint
-import zio.{Task, ZIO}
+import zio.{Task}
 
-import java.time.Instant
-
-object PersonEndpoint {
-
-  val personList: List[Person] = List(
-    Person("Person1", Instant.now),
-    Person("Person2", Instant.now),
-    Person("Person3", Instant.now),
-    Person("Person4", Instant.now),
-    Person("Person5", Instant.now)
-  )
+object PersonEndpoint extends PersonRepository{
 
   val personListing: PublicEndpoint[Unit, Unit, List[Person], Any] = endpoint
     .name("Default-endpoint")
@@ -31,7 +21,7 @@ object PersonEndpoint {
     .out(jsonBody[List[Person]])
 
   val personListingServerEndpoint: ZServerEndpoint[Any, Any] =
-    personListing.serverLogicSuccess(_ => ZIO.succeed(personList))
+    personListing.serverLogicSuccess(_ => getAllPersons)
 
   val apiEndpoints: List[ZServerEndpoint[Any, Any]] =
     List(personListingServerEndpoint)

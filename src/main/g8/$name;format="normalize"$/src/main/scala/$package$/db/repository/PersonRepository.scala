@@ -1,8 +1,8 @@
 package $package$.db.repository
 
-import $package.db.DbContext.ctx._
-import $package.db.DbContext._
-import $package.db.model.Person
+import $package$.db.DbContext.ctx._
+import $package$.db.DbContext._
+import $package$.db.model.Person
 import zio.{Task, ZIO}
 
 trait PersonRepository {

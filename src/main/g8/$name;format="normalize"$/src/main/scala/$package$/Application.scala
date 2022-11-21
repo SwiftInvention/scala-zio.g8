@@ -1,19 +1,8 @@
 package $package$
 
+import $package$.http._
 import $package$.db.repository.PersonRepository
 import $package$.utils.db.Migration
-import $package$.utils.log.Logable
-import zio._
-
-object Application extends Logable with ZIOAppDefault with PersonRepository {
-  def run =
-    for {
-      _      <- Migration.migrate
-      result <- getAllPersons
-      _      <- log.info(result.toString())
-    } yield ()
-import $package$.http._
-
 import org.slf4j.LoggerFactory
 import sttp.tapir.server.interceptor.log.DefaultServerLog
 import sttp.tapir.server.ziohttp.{ZioHttpInterpreter, ZioHttpServerOptions}
@@ -22,9 +11,9 @@ import zhttp.service.server.ServerChannelFactory
 import zhttp.service.{EventLoopGroup, Server}
 import zio.{Console, Scope, Task, ZIO, ZIOAppArgs, ZIOAppDefault}
 
-object Application extends ZIOAppDefault {
+object Application extends ZIOAppDefault with PersonRepository {
 
-  val log = LoggerFactory.getLogger(ZioHttpInterpreter.getClass.getName)
+  val log = LoggerFactory.getLogger(Application.getClass.getName)
 
   override def run: ZIO[Any with ZIOAppArgs with Scope, Any, Any] = {
     val serverOptions: ZioHttpServerOptions[Any] =
@@ -47,6 +36,7 @@ object Application extends ZIOAppDefault {
       ZioHttpInterpreter(serverOptions).toHttp(PersonEndpoint.all)
 
     (for {
+      _ <- Migration.migrate
       conf <- ZIO.service[HttpServerConfig]
       port = conf.port
       serverStart <- Server(app).withPort(port).make
