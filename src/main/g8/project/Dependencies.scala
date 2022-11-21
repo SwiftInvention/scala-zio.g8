@@ -24,7 +24,9 @@ object Dependencies {
   lazy val dbDep = Seq(
     "io.getquill" %% "quill-jdbc" % Versions.quill,
     "mysql" % "mysql-connector-java" % Versions.mysql,
-    "org.mindrot" % "jbcrypt" % "0.4"
+    "org.mindrot" % "jbcrypt" % "0.4",
+    "org.flywaydb" % "flyway-core" % Versions.flyway,
+    "org.flywaydb" % "flyway-mysql" % Versions.flyway
   ) map (_ % Compile)
 
   lazy val httpDep = Seq(
