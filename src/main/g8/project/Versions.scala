@@ -5,7 +5,7 @@ object Versions {
   val awssdk        = "2.17.209"
   val betterFiles   = "3.9.1"
   val chimney       = "0.6.2"
-  val circe         = "0.14.3"
+  val circe         = "3.8.3"
   val commonsLang3  = "3.12.0"
   val config        = "1.4.2"
   val enumeratum    = "1.7.1"
@@ -17,6 +17,7 @@ object Versions {
   val jna           = "5.11.0"
   val junit         = "4.12"
   val kafka         = "3.1.0"
+  val logback       = "1.4.4"
   val mockito       = "3.0.0"
   val mysql         = "8.0.31"
   val newType       = "0.4.4"
@@ -28,17 +29,14 @@ object Versions {
   val scalaUri      = "4.0.2"
   val slf4j         = "1.7.36"
   val sttp          = "3.6.2"
-
-  // Note: Failed to update to 1.2.1 because of tapir-openapi-circe-yaml.
-  // Maybe versions don't match exactly anymore, or new version is not finished yet
-  val tapir = "0.20.2"
-
+  val tapir         = "1.2.1"
   val testContainers      = "1.17.2"
   val testcontainersScala = "0.40.11"
   val zio                 = "1.0.16" // Note: Updating to 2.x may break compatibility with internal libs
+  val zioConfig                 = "3.0.1"
   val zioInteropReactivestreams = "1.3.12"
   val zioKafka                  = "0.17.5"
   val zioMagic                  = "0.3.12"
   val ziosqs                    = "0.4.2"
-  val zioHttpVersion = "1.0.0.0-RC29" // Note: Updating to 2.x may break compatibility  with internal libs
+  val zioHttpVersion            = "2.0.0-RC10" // Note: Seems everything works with this version
 }
