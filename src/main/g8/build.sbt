@@ -25,7 +25,7 @@ lazy val settings = Seq(
     "-unchecked",                     // Enable additional warnings where generated code depends on assumptions.
     "-Xlint:infer-any",               // Warn when a type argument is inferred to be `Any`.
     "-Xlint:missing-interpolator",    // A string literal appears to be missing an interpolator id.
-    "-Ywarn-dead-code",               // Warn when dead code is identified.
+//    "-Ywarn-dead-code",               // Warn when dead code is identified.
     "-Ywarn-unused:implicits",        // Warn if an implicit parameter is unused.
     "-Ywarn-unused:imports",          // Warn if an import selector is not referenced.
     "-Ywarn-unused:locals",           // Warn if a local definition is unused.

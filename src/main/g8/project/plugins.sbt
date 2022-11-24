@@ -8,6 +8,15 @@ addSbtPlugin("ch.epfl.scala" % "sbt-scalafix" % sbtScalafix)
 addCompilerPlugin("org.typelevel" % "kind-projector" % kindProjector cross CrossVersion.full)
 addCompilerPlugin("com.olegpy" %% "better-monadic-for" % betterMonadicFor)
 
-// Note: an optional plugin for listing outdated dependencies
-// Keep commented out to avoid unnecessary dependencies and/or conflicts
+// Note: Optional plugins:
+// (Left commented out to avoid unnecessary dependencies and/or conflicts)
+
+// addSbtPlugin("net.virtual-void" % "sbt-dependency-graph" % "0.10.0-RC1")
+// sbt dependencyTree
+
 // addSbtPlugin("org.jmotor.sbt" % "sbt-dependency-updates" % "1.2.7")
+// sbt dependencyUpdates
+
+// addSbtPlugin("com.github.cb372" % "sbt-explicit-dependencies" % "0.2.16")
+// sbt undeclaredCompileDependencies
+// sbt unusedCompileDependencies
