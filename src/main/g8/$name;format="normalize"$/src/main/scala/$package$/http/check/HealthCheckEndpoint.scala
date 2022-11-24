@@ -7,24 +7,24 @@ import zio.ZIO
 
 object HealthCheckEndpoint extends HealthCheckHelper {
 
-  val healthChecking: Endpoint[Unit, Unit, String, Int, Any] = endpoint
+  val healthChecking: PublicEndpoint[Unit, Unit, Unit, Any] = endpoint
     .name("Healthcheck-endpoint")
     .description("returns 200 if the database is available at the time the request is received")
     .get
     .in("check" / "health")
-    .errorOut(stringBody)
-    .out(plainBody[Int])
+    .out(emptyOutput)
 
   val healthCheckingServerEndpoint: ZServerEndpoint[Any, Any] =
     healthChecking.serverLogicSuccess(_ => healthCheck)
 
-  val readinessChecking: Endpoint[Unit, Unit, Unit, Int, Any] = endpoint
+  val readinessChecking: PublicEndpoint[Unit, Unit, Unit, Any] = endpoint
     .name("Readiness-endpoint")
     .description("returns 200 if the server is available")
     .get
     .in("check" / "readiness")
-    .out(plainBody[Int])
+    .out(emptyOutput)
 
   val readinessCheckingServerEndpoint: ZServerEndpoint[Any, Any] =
-    readinessChecking.serverLogicSuccess(_ => ZIO.succeed(200))
+    readinessChecking.serverLogicSuccess(_ => ZIO.unit)
+
 }
