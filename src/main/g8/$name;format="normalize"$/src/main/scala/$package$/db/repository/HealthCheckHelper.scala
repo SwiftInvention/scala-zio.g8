@@ -6,7 +6,7 @@ import zio.{Task, ZIO}
 
 trait HealthCheckHelper {
 
-  def healthCheck: Task[Int] = ZIO.succeed {
+  def healthCheck: Task[Int] = ZIO.effect {
     val q = ctx.quote {
       infix"""SELECT 1""".as[Int]
     }

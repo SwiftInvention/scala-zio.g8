@@ -26,5 +26,5 @@ object HealthCheckEndpoint extends HealthCheckHelper {
     .out(plainBody[Int])
 
   val readinessCheckingServerEndpoint: ZServerEndpoint[Any, Any] =
-    readinessChecking.serverLogicSuccess(_ => ZIO.succeed(200))
+    readinessChecking.serverLogicSuccess(_ => ZIO.effect(200))
 }

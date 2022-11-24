@@ -6,7 +6,7 @@ import $package$.db.model.Person
 import zio.{Task, ZIO}
 
 trait PersonRepository {
-  def getAllPersons: Task[List[Person]] = ZIO.succeed {
+  def getAllPersons: Task[List[Person]] = ZIO.effect {
     val q = ctx.quote {
       persons
     }
