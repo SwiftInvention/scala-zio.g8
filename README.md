@@ -16,32 +16,8 @@ sbt new SwiftInvention/scala-zio.g8 -b main
 - quill
 - mysql jdbc
 - tapir
-- circe
 - zio-http
 - zio-test
-- testcontainers
 
-## Structure of project
-
-```
-$name$ of project
-├── src
-│   └── main
-│   │    └── resources
-│   │    │   └── db
-│   │    │       └── migration
-│   │    └── scala
-│   │        └── $organization$
-│   └── test
-│        └── resources
-│        └── scala
-│            └── $organization$
-pipeline
-│
-project
-├── build.properties
-build.sbt
-
-```
 
 [g8]: http://www.foundweekends.org/giter8/
