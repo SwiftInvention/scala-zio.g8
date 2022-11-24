@@ -15,8 +15,8 @@ object Migration {
 
   def migrate: ZIO[Any, Throwable, MigrateResult] =
     for {
-      _ <- ZIO.effectTotal(println("Start migrating the database"))
+      _   <- ZIO.effectTotal(println("Start migrating the database"))
       res <- ZIO.effect(flyway.migrate())
-      _ <- ZIO.effectTotal(println("Start migrating the database"))
+      _   <- ZIO.effectTotal(println("Migration successful"))
     } yield res
 }
