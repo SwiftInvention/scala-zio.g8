@@ -4,9 +4,7 @@ object Dependencies {
 
   lazy val commonDep = Seq(
     "dev.zio" %% "zio" % Versions.zio,
-    "dev.zio" %% "zio-config" % Versions.zioConfig,
-    "dev.zio" %% "zio-config-typesafe" % Versions.zioConfig,
-    "dev.zio" %% "zio-config-magnolia" % Versions.zioConfig
+    "com.github.pureconfig" %% "pureconfig" % Versions.pureConfig,
   ) map (_ % Compile)
 
   lazy val dbDep = Seq(
