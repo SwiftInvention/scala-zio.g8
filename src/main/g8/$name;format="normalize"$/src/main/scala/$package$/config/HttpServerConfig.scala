@@ -1,20 +1,22 @@
 package $package$.config
 
-import zio._
-import zio.config._
-import zio.config.magnolia.descriptor
-import zio.config.typesafe.TypesafeConfigSource
+import zio.config.ReadError
+import zio.{Has, ZLayer}
+import com.typesafe.config.ConfigFactory
+import scala.util.Try
 
-case class HttpServerConfig(host: String, port: Int)
+final case class HttpServerConfig(host: String, port: Int)
 
 object HttpServerConfig {
-  val layer: ZLayer[Any, ReadError[String], HttpServerConfig] =
-    ZLayer {
-      read {
-        descriptor[HttpServerConfig].from(
-          TypesafeConfigSource.fromResourcePath
-            .at(PropertyTreePath.\$("HttpServer"))
-        )
-      }
-    }
+  val layer: ZLayer[Any, ReadError[String], Has[HttpServerConfig]] = {
+    Try({
+      val conf = ConfigFactory.load("application.conf")
+      val port = conf.getInt("httpServer.port")
+      val host = conf.getString("httpServer.host")
+      HttpServerConfig(host, port)
+    }).fold(
+      e => ZLayer.fail(ReadError.SourceError(e.getMessage)),
+      x => ZLayer.succeed(x)
+    )
+  }
 }

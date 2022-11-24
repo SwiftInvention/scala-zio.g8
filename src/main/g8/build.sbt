@@ -13,7 +13,7 @@ lazy val $name;format="camel"$ = (project in file("""$name;format="normalize"$""
   )
 
 lazy val settings = Seq(
-  libraryDependencies ++= commonDep ++ testDep ++ tapirCore ++ httpDep ++ dbDep,
+  libraryDependencies ++= commonDep ++ testDep ++ httpDep ++ dbDep,
   scalacOptions ++= Seq(
     "-deprecation",           // Emit warning and location for usages of deprecated APIs.
     "-encoding", "utf-8",     // Specify character encoding used by source files.
