@@ -1,7 +1,7 @@
 package $package$
 
 import $package$.config.HttpServerConfig
-import $package$.http.swagger.SwaggerApiEndpoint.common
+import $package$.http.swagger.SwaggerApiEndpoint
 import $package$.utils.db.Migration
 import sttp.tapir.server.ziohttp.ZioHttpInterpreter
 import zhttp.http.HttpApp
