@@ -6,10 +6,12 @@ import zio.{Task, ZIO}
 
 trait HealthCheckHelper {
 
-  def healthCheck: Task[Int] = ZIO.effect {
-    val q = ctx.quote {
-      infix"""SELECT 1""".as[Int]
+  def healthCheck: Task[Unit] = ZIO
+    .effect {
+      val q = ctx.quote {
+        infix"""SELECT 1""".as[Int]
+      }
+      ctx.run(q)
     }
-    ctx.run(q)
-  }
+    .as(())
 }
