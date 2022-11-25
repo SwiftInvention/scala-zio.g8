@@ -1,23 +1,21 @@
 package $package$.http.swagger
 
 import $package$.http.PersonEndpoint.personListingServerLogic
-import $package$.http.check.HealthCheckEndpoint.{healthCheckingServerEndpoint, readinessCheckingServerEndpoint}
+import $package$.http.check.HealthCheckEndpoint
+import $package$.AppEnv.AppEnv
 import sttp.tapir.swagger.bundle.SwaggerInterpreter
-import sttp.tapir.ztapir.ZServerEndpoint
-import zio.Task
+import sttp.tapir.ztapir.ZTapir
 
-object SwaggerApiEndpoint {
-
-  val apiEndpoints: List[ZServerEndpoint[Any, Any]] =
+object SwaggerApiEndpoint extends ZTapir {
+  val apiEndpoints: List[ZServerEndpoint[AppEnv, Any]] =
     List(
-      healthCheckingServerEndpoint,
-      readinessCheckingServerEndpoint,
-      personListingServerLogic,
+      HealthCheckEndpoint.healthCheckingServerEndpoint,
+      HealthCheckEndpoint.readinessCheckingServerEndpoint,
+      personListingServerLogic
     )
 
-  val docEndpoints: List[ZServerEndpoint[Any, Any]] = SwaggerInterpreter()
-    .fromServerEndpoints[Task](apiEndpoints, "project", "0.1.0")
-
+  val docEndpoints: List[ZServerEndpoint[AppEnv, Any]] = SwaggerInterpreter()
+    .fromServerEndpoints(apiEndpoints, "project", "0.1.0")
 
   val common = apiEndpoints ++ docEndpoints
 }

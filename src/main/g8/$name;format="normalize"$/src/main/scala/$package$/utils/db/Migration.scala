@@ -1,22 +1,24 @@
 package $package$.utils.db
 
-import $package$.db.DbContext.ctx.dataSource
+import $package$.AppEnv.AppIO
 import org.flywaydb.core.Flyway
-import org.flywaydb.core.api.output.MigrateResult
-import zio.ZIO
+import zio._
+import javax.sql.DataSource
 
 object Migration {
+  def migrate: AppIO[Unit] = for {
+    ds <- ZIO.service[DataSource]
+    _  <- ZIO.effectTotal(println("Start migrating the database"))
 
-  lazy val flyway: Flyway = Flyway.configure
-    .locations("db/migration")
-    .dataSource(dataSource)
-    .baselineOnMigrate(true)
-    .load
+    _ <- ZIO.effect(
+      Flyway.configure
+        .locations("db/migration")
+        .dataSource(ds)
+        .baselineOnMigrate(true)
+        .load
+        .migrate()
+    )
 
-  def migrate: ZIO[Any, Throwable, MigrateResult] =
-    for {
-      _   <- ZIO.effectTotal(println("Start migrating the database"))
-      res <- ZIO.effect(flyway.migrate())
-      _   <- ZIO.effectTotal(println("Migration successful"))
-    } yield res
+    _ <- ZIO.effectTotal(println("Migration successful"))
+  } yield ()
 }
