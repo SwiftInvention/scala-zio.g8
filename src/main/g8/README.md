@@ -56,8 +56,7 @@
     ```
 ### Swagger-UI
 
-- Link to Swagger documentation endpoints:
- `http://<localhost>:<port>/docs`
+- Swagger documentation: http://localhost:8080/docs
 
 ### Scalafix
 

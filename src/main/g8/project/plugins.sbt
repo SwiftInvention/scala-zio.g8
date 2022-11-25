@@ -11,7 +11,7 @@ addCompilerPlugin("com.olegpy" %% "better-monadic-for" % betterMonadicFor)
 // Note: Optional plugins:
 // (Left commented out to avoid unnecessary dependencies and/or conflicts)
 
-// addSbtPlugin("net.virtual-void" % "sbt-dependency-graph" % "0.10.0-RC1")
+// addDependencyTreePlugin
 // sbt dependencyTree
 
 // addSbtPlugin("org.jmotor.sbt" % "sbt-dependency-updates" % "1.2.7")

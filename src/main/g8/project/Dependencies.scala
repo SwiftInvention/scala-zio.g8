@@ -9,6 +9,7 @@ object Dependencies {
 
   lazy val dbDep = Seq(
     "io.getquill" %% "quill-jdbc" % Versions.quill,
+    "io.getquill" %% "quill-jdbc-zio" % Versions.quill,
     "mysql" % "mysql-connector-java" % Versions.mysql,
     "org.flywaydb" % "flyway-core" % Versions.flyway,
     "org.flywaydb" % "flyway-mysql" % Versions.flyway
@@ -19,7 +20,8 @@ object Dependencies {
     "com.softwaremill.sttp.tapir" %% "tapir-json-circe" % Versions.tapir,
     "com.softwaremill.sttp.tapir" %% "tapir-openapi-docs" % Versions.tapir,
     "com.softwaremill.sttp.tapir" %% "tapir-zio1-http-server" % Versions.tapir,
-    "com.softwaremill.sttp.tapir" %% "tapir-swagger-ui-bundle" % Versions.tapir
+    "com.softwaremill.sttp.tapir" %% "tapir-swagger-ui-bundle" % Versions.tapir,
+    "io.d11"                       % "zhttp_2.13"              % Versions.zioHttpVersion,
   ) map (_ % Compile)
 
   lazy val testDep = Seq(
