@@ -8,6 +8,7 @@ import zhttp.service.server.ServerChannelFactory
 import zio._
 import zio.duration.durationInt
 import zio.clock.Clock
+import zio.console.putStrLn
 
 object AppEnv {
   type AppEnv = Has[HttpServerConfig]
@@ -18,8 +19,12 @@ object AppEnv {
 
   type AppIO[T] = ZIO[AppEnv, Throwable, T]
 
-  def buildLiveEnv =
-    HttpServerConfig.layer ++ Clock.live ++ DataSourceLayer.fromPrefix("mysql").retry(Schedule.spaced(2000.milliseconds)) ++
-      EventLoopGroup.auto(0) ++ ServerChannelFactory.auto
+  lazy val availableDbSchedule = Schedule
+    .fixed(2000.milliseconds)
+    .tapOutput(o => putStrLn(s"Waiting for database to be available, retry count: $o").orDie)
 
+  def buildLiveEnv =
+    HttpServerConfig.layer ++ Clock.live ++
+      DataSourceLayer.fromPrefix("mysql").retry(availableDbSchedule) ++
+      EventLoopGroup.auto(0) ++ ServerChannelFactory.auto
 }

@@ -1,6 +1,5 @@
 package $package$.http.swagger
 
-import $package$.http.PersonEndpoint.personListingServerLogic
 import $package$.http.check.HealthCheckEndpoint
 import $package$.AppEnv.AppEnv
 import sttp.tapir.swagger.bundle.SwaggerInterpreter
@@ -11,7 +10,6 @@ object SwaggerApiEndpoint extends ZTapir {
     List(
       HealthCheckEndpoint.healthCheckingServerEndpoint,
       HealthCheckEndpoint.readinessCheckingServerEndpoint,
-      personListingServerLogic
     )
 
   val docEndpoints: List[ZServerEndpoint[AppEnv, Any]] = SwaggerInterpreter()
