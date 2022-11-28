@@ -4,6 +4,17 @@
 
 - `sbt`
 - Docker, `docker-compose`
+- OpenJDK 11 or above
+
+## Setting up
+
+### Scalafmt Editor support
+
+- [VS Code][vscode]
+- [Intellij IDEA][intellij]
+
+[vscode]: https://scalameta.org/metals/docs/editors/vscode/
+[intellij]: https://scalameta.org/scalafmt/docs/installation.html#intellij
 
 ## Usage
 
@@ -43,17 +54,10 @@
   - ```sh
     sbt dependencyUpdates
     ```
+### Swagger-UI
 
-### How to use scalafmt
+- Swagger documentation: http://localhost:8080/docs
 
-- With [VS Code][vscode]
-- With [Intellij IDEA][intellij]
+### Scalafix
 
-[vscode]: https://scalameta.org/metals/docs/editors/vscode/
-[intellij]: https://scalameta.org/scalafmt/docs/installation.html#intellij
-
-### How to use scalafix
-
-- `sbt scalafix` – to execute linter
-- `scalafix RemoveUnused` – to delete unused variables
-- `scalafixAll <args>` – invoke scalafix across all configurations where scalafix is enabled
+- `sbt scalafix` – run linter, check all files, fail on warnings

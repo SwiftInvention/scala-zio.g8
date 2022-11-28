@@ -13,7 +13,7 @@ lazy val $name;format="camel"$ = (project in file("""$name;format="normalize"$""
   )
 
 lazy val settings = Seq(
-  libraryDependencies ++= commonDep ++ testDep ++ tapirCore ++ httpDep ++ dbDep,
+  libraryDependencies ++= commonDep ++ testDep ++ httpDep ++ dbDep,
   scalacOptions ++= Seq(
     "-deprecation",           // Emit warning and location for usages of deprecated APIs.
     "-encoding", "utf-8",     // Specify character encoding used by source files.
@@ -25,7 +25,7 @@ lazy val settings = Seq(
     "-unchecked",                     // Enable additional warnings where generated code depends on assumptions.
     "-Xlint:infer-any",               // Warn when a type argument is inferred to be `Any`.
     "-Xlint:missing-interpolator",    // A string literal appears to be missing an interpolator id.
-    "-Ywarn-dead-code",               // Warn when dead code is identified.
+//    "-Ywarn-dead-code",               // Warn when dead code is identified.
     "-Ywarn-unused:implicits",        // Warn if an implicit parameter is unused.
     "-Ywarn-unused:imports",          // Warn if an import selector is not referenced.
     "-Ywarn-unused:locals",           // Warn if a local definition is unused.
@@ -35,9 +35,11 @@ lazy val settings = Seq(
     "-Ywarn-value-discard",           // Warn when non-Unit expression results are unused.
     "-Werror"                         // Fail the compilation if there are any warnings.
   ),
-  // scalafix
-  semanticdbEnabled := true, // enable SemanticDB
-  semanticdbVersion := scalafixSemanticdb.revision, // only required for Scala 2.x
+
+  // Scalafix
+  semanticdbEnabled := true, // Enable SemanticDB
+  semanticdbVersion := scalafixSemanticdb.revision, // Only required for Scala 2.x
+  scalafixOnCompile := true, // Run scalafix every time on compile. Comment out when necessary
 
   testFrameworks += new TestFramework("zio.test.sbt.ZTestFramework")
 )

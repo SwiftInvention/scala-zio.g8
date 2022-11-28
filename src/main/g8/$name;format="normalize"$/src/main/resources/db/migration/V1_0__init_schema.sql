@@ -1,1 +1,1 @@
--- your first db migration file
+-- your init migration
