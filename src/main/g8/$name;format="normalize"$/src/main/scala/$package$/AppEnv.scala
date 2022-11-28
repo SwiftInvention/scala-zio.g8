@@ -21,6 +21,7 @@ object AppEnv {
 
   lazy val availableDbSchedule = Schedule
     .fixed(2000.milliseconds)
+      // TODO: replace putStrLn with actual implementation of logger
     .tapOutput(o => putStrLn(s"Waiting for database to be available, retry count: \$o").orDie)
 
   def buildLiveEnv =
