@@ -8,7 +8,7 @@ import zhttp.http.HttpApp
 import zhttp.service.Server
 import zio._
 import zhttp.http._
-import AppEnv.{AppEnv, AppIO}
+import AppEnv.AppEnv
 import java.time.Duration
 
 object Application extends App {
