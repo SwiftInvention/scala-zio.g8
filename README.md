@@ -19,6 +19,6 @@ sbt new SwiftInvention/scala-zio.g8 -b main
 - zio-http
 - zio-test
 
-## For usage example, see: [scala-zio-example](https://github.com/kolebakin/scala_zio_example)
+## For usage example, see: [scala-zio-example](https://github.com/SwiftInvention/scala-zio-example)
 
 [g8]: http://www.foundweekends.org/giter8/
