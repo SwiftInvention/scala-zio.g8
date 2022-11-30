@@ -10,6 +10,6 @@ trait HealthCheckHelper {
     val q = ctx.quote {
       infix"""SELECT 1""".as[Int]
     }
-    run(q).as(())
+    run(q).unit
   }
 }

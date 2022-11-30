@@ -6,13 +6,14 @@ import javax.sql.DataSource
 import zhttp.service.EventLoopGroup
 import zhttp.service.server.ServerChannelFactory
 import zio._
-import zio.duration.durationInt
 import zio.clock.Clock
-import zio.console.putStrLn
+import zio.duration.durationInt
+import zio.console.{Console, putStrLn}
 
 object AppEnv {
   type AppEnv = Has[HttpServerConfig]
     with Has[Clock.Service]
+    with Has[Console.Service]
     with Has[DataSource]
     with EventLoopGroup
     with zhttp.service.ServerChannelFactory
@@ -25,7 +26,7 @@ object AppEnv {
     .tapOutput(o => putStrLn(s"Waiting for database to be available, retry count: \$o").orDie)
 
   def buildLiveEnv =
-    HttpServerConfig.layer ++ Clock.live ++
+    HttpServerConfig.layer ++ Clock.live ++ Console.live ++
       DataSourceLayer.fromPrefix("mysql").retry(availableDbSchedule) ++
       EventLoopGroup.auto(0) ++ ServerChannelFactory.auto
 }
