@@ -35,6 +35,11 @@
   ```sh
   sbt $name;format="camel"$/run
   ```
+- Run in live reload mode
+
+  ```sh
+  sbt ~$name;format="camel"$/reStart
+  ```
 
 - When done, remove docker containers, networks and volumes
 
