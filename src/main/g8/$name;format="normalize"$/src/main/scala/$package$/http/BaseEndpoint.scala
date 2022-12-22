@@ -1,7 +1,6 @@
 package $package$.http
 
 import $package$.AppEnv.AppEnv
-import $package$.http.PersonEndpoint.ZServerEndpoint
 import sttp.tapir._
 import sttp.tapir.ztapir.RichZEndpoint
 import zio.ZIO

@@ -11,7 +11,7 @@ object SwaggerApiEndpoint extends ZTapir {
     HealthCheckEndpoint.databaseCheck
   )
 
-  private val apiEndpoints = personEndpoints
+  private val apiEndpoints = healthCheckEndpoints
 
   private val docEndpoints: List[ZServerEndpoint[AppEnv, Any]] = SwaggerInterpreter()
     .fromServerEndpoints(apiEndpoints, "project", "0.1.0")
