@@ -61,3 +61,7 @@
 ### Scalafix
 
 - `sbt scalafix` – run linter, check all files, fail on warnings
+
+### Additional resources
+
+[Setting up debugger in Intellij IDEA](/docs/intellij-idea-setup.md)
