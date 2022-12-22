@@ -2,7 +2,7 @@ package $package$.http
 
 import $package$.AppEnv.AppEnv
 import sttp.tapir._
-import sttp.tapir.ztapir.RichZEndpoint
+import sttp.tapir.ztapir.{RichZEndpoint, ZServerEndpoint}
 import zio.ZIO
 
 object BaseEndpoint {
