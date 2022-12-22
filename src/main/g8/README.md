@@ -35,6 +35,11 @@
   ```sh
   sbt $name;format="camel"$/run
   ```
+- Run in live reload mode
+
+  ```sh
+  sbt ~$name;format="camel"$/reStart
+  ```
 
 - When done, remove docker containers, networks and volumes
 
@@ -61,3 +66,7 @@
 ### Scalafix
 
 - `sbt scalafix` – run linter, check all files, fail on warnings
+
+### Additional resources
+
+[Setting up debugger in Intellij IDEA](/docs/intellij-idea-setup.md)

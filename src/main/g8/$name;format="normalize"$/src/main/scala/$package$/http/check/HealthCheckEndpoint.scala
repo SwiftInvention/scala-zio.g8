@@ -1,31 +1,32 @@
 package $package$.http.check
 
-import $package$.db.repository.HealthCheckHelper
 import $package$.AppEnv.AppEnv
+import $package$.db.repository.HealthCheckHelper
+import $package$.http.BaseEndpoint.{makeEndpoint, makeEndpointHandler}
+import $package$.http.InternalServerError
 import sttp.tapir._
-import zio._
 import sttp.tapir.ztapir.ZTapir
+import zio.ZIO
 
 object HealthCheckEndpoint extends HealthCheckHelper with ZTapir {
-  
-  val healthChecking: PublicEndpoint[Unit, Unit, Unit, Any] = endpoint
-    .name("Healthcheck-endpoint")
-    .description("returns 200 if the database is available at the time the request is received")
-    .get
-    .in("check" / "health")
-    .out(emptyOutput)
 
-  val healthCheckingServerEndpoint: ZServerEndpoint[AppEnv, Any] =
-    healthChecking.zServerLogic(_ => healthCheck.mapError(_ => ()))
+  val databaseCheck: ZServerEndpoint[AppEnv, Any] =
+    makeEndpointHandler(
+      makeEndpoint(
+        "database-health-check",
+        "returns 200 if the database is available at the time the request is received"
+      ).get
+        .in("check" / "database")
+        .out(emptyOutput)
+    )(_ => databaseHealthCheck.mapError(_ => InternalServerError))
 
-  val readinessChecking: PublicEndpoint[Unit, Unit, Unit, Any] = endpoint
-    .name("Readiness-endpoint")
-    .description("returns 200 if the server is available")
-    .get
-    .in("check" / "readiness")
-    .out(emptyOutput)
-
-  val readinessCheckingServerEndpoint: ZServerEndpoint[AppEnv, Any] =
-    readinessChecking.zServerLogic(_ => ZIO.unit)
-
+  val serverCheck: ZServerEndpoint[AppEnv, Any] =
+    makeEndpointHandler(
+      makeEndpoint(
+        "server-health-check",
+        "returns 200 if the server is available"
+      ).get
+        .in("check" / "server")
+        .out(emptyOutput)
+    )(_ => ZIO.unit)
 }
